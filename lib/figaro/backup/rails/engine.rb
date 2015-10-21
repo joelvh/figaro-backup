@@ -11,7 +11,7 @@ module Figaro
           raise       build_message "You should really use git!" unless git_installed?
           raise       build_message "Make sure to add #{Figaro.application.path.inspect} to .gitignore!" unless git_ignored?
           return puts(build_message "YAY! Your project lives in Dropbox!") if in_dropbox?(Figaro.application.path)
-          raise       build_message "Make sure that #{config_path.inspect} is symlinked" unless symlinked?
+          raise       build_message "Make sure that #{Figaro.application.path.inspect} is symlinked" unless symlinked?
           raise       build_message "Your symlink #{symlink_target_path.inspect} should be in Dropbox!" unless symlinked_to_dropbox?
           puts        build_message "YAY! Your Figaro config is symlinked to Dropbox!"
         end
