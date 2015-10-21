@@ -1,13 +1,14 @@
 module Figaro
-  module Dropbox
+  module Backup
     module Rails
       class Engine < ::Rails::Engine
 
         config.before_configuration do
-          check_things_out!
+          check_things_out! if ::Rails.env.development?
         end
 
         def check_things_out!
+          raise       build_message "Oops... #{Figaro.application.path.inspect} is missing." unless File.exists?(Figaro.application.path)
           raise       build_message "You should really use git!" unless git_installed?
           raise       build_message "Make sure to add #{Figaro.application.path.inspect} to .gitignore!" unless git_ignored?
           return puts(build_message "YAY! Your project lives in Dropbox!") if in_dropbox?(Figaro.application.path)
@@ -53,7 +54,7 @@ module Figaro
         end
 
         def build_message(message)
-          "[Figaro Dropbox] #{message}"
+          "[Figaro Backup] #{message}"
         end
       end
     end
