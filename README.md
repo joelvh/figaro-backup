@@ -1,6 +1,6 @@
-# Figaro::Backup
+# Figaro Backup
 
-TODO: Write a gem description
+Easily validate that your `application.yml` is stored outside your git repo via symlink. Ideally, the symlink stores your config in Dropbox for easy backup and reference from multiple computers (depending on your workflow).
 
 ## Installation
 
@@ -16,9 +16,14 @@ Or install it yourself as:
 
     $ gem install figaro-backup
 
+### Dependencies
+
+* rails gem
+* figaro gem
+
 ## Usage
 
-TODO: Write usage instructions here
+Runs automatically, only when the environment is "development". Throws an exception if not symlinked to Dropbox.
 
 ## Contributing
 
